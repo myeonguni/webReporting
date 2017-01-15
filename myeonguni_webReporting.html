@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<!-- 링크에 표시될 이미지 -->
+	<link rel="image_src" href="./img/thumbnail.jpg"/>
+	<!-- META TAG 정의 -->
+	<meta name="title" content="webReporting"/>
+	<meta name="author" content="opentop.co.kr"/>
+	<meta name="keyword" content="webReporting"/>
+	<meta name="description" content="HTML WINDOW, PRINT 객체를 이용한 웹 리포팅 페이지 제작해보기"/>
+	<meta name="publisher" content="http://myeonguni.com"/>
+	<meta name="replay-to(Email)" content="aparecium117@gmail.com"/>
+	<!-- JQuery -->
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<!-- 페이지 제목 -->
+	<title>오픈탑 :: 웹 리포팅 페이지 만들기</title>
+</head>
+<body onload="init_defalut_print()">
+	<!-- HEADER -->
+	<header>
+		<!-- DEFAULT NEWS TITLE -->
+		<div align="center">
+			<h2>
+				<img src="resource/img_print.png" width="25px" height="25px"> 웹 리포팅 페이지 만들기
+			</h2>
+			<br/>
+			<br/>
+		</div><!-- //DEFAULT NEWS TITLE -->
+	</header><!-- //HEADER -->
+
+	<!-- CONTENT -->
+	<div>
+		<div style="width:730px; position: absolute; left:50%; margin-left:-365px;">
+			<!-- 카테고리 별 검색 -->
+			<div
+				style="background-image: url('http://myeonguni.com/webReporting/resource/img_logo.png'); background-repeat: no-repeat; background-size: 141px 25px; height:40px;">
+				<form action="#"
+					method="post">
+					<div align="right">
+						<select id="category" name="category" style="height:25px;">
+							<option selected value="stafflist_index">직원번호</option>
+							<option value="stafflist_position">직급</option>
+							<option value="stafflist_name">이름</option>
+							<option value="stafflist_tel">전화번호</option>
+							<option value="stafflist_email">이메일</option>
+						</select>&nbsp;
+						<input type="text" id="searchTxt" name="searchTxt" placeholder="Enter search" style="height:19px;">&nbsp;
+						<button type="button" onClick="javascript:alert('준비 중 입니다.')" style="height:25px;">
+							<img src="resource/img_search.png" width="15px" height="15px">  검색하기
+						</button>
+					</div>
+				</form>
+			</div><!-- //카테고리 별 검색 -->
+			<hr>
+			<!-- 직원 추가 -->
+			<div style="position:absolute; top:90px; left:0px;">
+				<button type="button" onClick="javascript:alert('준비 중 입니다.')" style="height:25px;">
+					<img src="resource/img_plus.png" width="15px" height="15px">  추가하기
+				</button>
+			</div><!-- //직원 추가 -->
+			<!-- 다운로드(XLS,CSV), 출력 -->
+			<div style="position:absolute; top:90px; right:0px;">
+				<select id="extension" name="extension" style="height:25px;">
+					<option selected value="xls">XLS</option>
+					<option value="csv">CSV</option>
+				</select>&nbsp;
+				<button type="button" onClick="javascript:alert('준비 중 입니다.')" style="height:25px;">
+					<img src="resource/img_download.png" width="15px" height="15px"> 다운로드
+				</button>
+				<button type="button" onClick="print(document.getElementById('staffList').innerHTML)" style="height:25px;">
+					<img src="resource/img_print.png" width="15px" height="15px"> 출력하기
+				</button>
+			</div><!-- 다운로드(XLS,CSV), 출력 -->
+			<br><br><br><br>
+			<!-- 직원 리스트 (프린트 영역) -->
+			<div id="staffList" style="height: 500px; overflow: auto">
+				<table style="width:730px; height:131px; font-size:14; text-align: left;">
+					<tr>
+						<th style="border-top:1px solid #ddd;">직원번호</th>
+						<th style="border-top:1px solid #ddd;">직급</th>
+						<th style="border-top:1px solid #ddd;">이름</th>
+						<th style="border-top:1px solid #ddd;">전화번호</th>
+						<th style="border-top:1px solid #ddd;">이메일</th>
+						<th style="border-top:1px solid #ddd;" style="text-align: center">수정</th>
+						<th style="border-top:1px solid #ddd;" style="text-align: center">삭제</th>
+					</tr>
+					<tr>
+						<td style="border-top:1px solid #ddd;">001</td>
+						<td style="border-top:1px solid #ddd;">사원</td>
+						<td style="border-top:1px solid #ddd;">류명운</td>
+						<td style="border-top:1px solid #ddd;">010-5188-9182</td>
+						<td style="border-top:1px solid #ddd;">aparecium117@gmail.com</td>
+						<td style="border-top:1px solid #ddd;" style="text-align: center">
+							<button type="button" onClick="">
+								<img src="http://myeonguni.com/webReporting/resource/img_edit_user.png" width="15px" height="15px">
+							</button>
+						</td>
+						<td style="border-top:1px solid #ddd;" style="text-align: center">
+							<button type="button" onClick="">
+								<img src="http://myeonguni.com/webReporting/resource/img_remove_user.png" width="15px" height="15px">
+							</button>
+						</td>
+					</tr>
+					<tr>
+						<td style="border-top:1px solid #ddd;">002</td>
+						<td style="border-top:1px solid #ddd;">사원</td>
+						<td style="border-top:1px solid #ddd;">김원정</td>
+						<td style="border-top:1px solid #ddd;">010-5678-3456</td>
+						<td style="border-top:1px solid #ddd;">test123@gmail.com</td>
+						<td style="border-top:1px solid #ddd;" style="text-align: center">
+							<button type="button" onClick="">
+								<img src="http://myeonguni.com/webReporting/resource/img_edit_user.png" width="15px" height="15px">
+							</button>
+						</td>
+						<td style="border-top:1px solid #ddd;" style="text-align: center">
+							<button type="button" onClick="">
+								<img src="http://myeonguni.com/webReporting/resource/img_remove_user.png" width="15px" height="15px">
+							</button>
+						</td>
+					</tr>
+				</table>
+			</div><!-- //직원 리스트 (프린트 영역) -->
+		</div>
+		<!-- scriptX(프린트 설정) -->
+	    <OBJECT id=IEPageSetupX classid="clsid:41C5BC45-1BE8-42C5-AD9F-495D6C8D7586" codebase="./IEPageSetupX.cab#version=1,4,0,3" width=0 height=0>	
+			<param name="copyright" value="http://isulnara.com">
+			<div style="position:absolute;top:276;left:320;width:300;height:68;border:solid 1 #99B3A0;background:#D8D7C4;overflow:hidden;z-index:1;visibility:visible;"><FONT style='font-family: "굴림", "Verdana"; font-size: 9pt; font-style: normal;'>
+			<BR>  인쇄 여백제어 컨트롤이 설치되지 않았습니다.  <BR>  <a href="./IEPageSetupX.exe"><font color=red>이곳</font></a>을 클릭하여 수동으로 설치하시기 바랍니다.  </FONT>
+			</div>
+		</OBJECT><!-- //scriptX(프린트 설정) -->
+	</div><!-- //CONTENT -->
+
+	<!-- FOOTER 저작권 표시 -->
+    <div style="position:absolute; left:50%; margin-left:-172px; bottom:15px;">
+    	copyright ⓒ 2017 <a href="http://www.opentop.co.kr/" target="_blank">opentop.co.kr</a> All Rights Reserved
+    </div><!-- //FOOTER 저작권 표시 -->
+
+
+	<!-- 스크립트 -->
+	<script>
+		/* 페이지 로드 시 초기화 작업 진행 */ 
+		$(function() {
+			/* 기본 프린트 영역 초기화 */
+			init_defalut_print();
+		});
+
+
+		/** 기본 프린트 영역 초기화 함수(body load 시 호출) */
+		function init_defalut_print(){
+			IEPageSetupX.header=''						//머리글 설정
+
+			IEPageSetupX.footer=''						//바닥글 설정
+
+			//IEPageSetupX.leftMargin=8leftMargin		//왼쪽 여백(단위: mm)
+
+			//IEPageSetupX.rightMargin=2rightMargin		//오른쪽 여백(단위: mm)
+
+			//IEPageSetupX.topMargin=1topMargin			//위쪽 여백(단위: mm)
+
+			//IEPageSetupX.bottomMargin=10bottomMargin	//아래쪽 여백(단위: mm)
+
+			//IEPageSetupX.RollBack();RollBack 수정 이전 값으로 되돌림(한 단계 이전만 지원)
+
+			//IEPageSetupX.Clear();						//Clear 여백은 0으로, 머리글/			바닥글은 모두 제거, 배경색 및 이미지 인쇄 안함, 크기에 맞게 축소 안함
+			
+			//IEPageSetupX.SetDefault();				//SetDefault기본값으로 복원(여백 모두: 0.75mm, 머리글:&w&b페이지 &p / &P, 바닥글:&u&b&d, 배경색 및 이미지 인쇄: 안함, 크기에 맞게 축소: 안함)
+
+			//IEPageSetupX.Preview();					//미리보기
+
+			//IEPageSetupX.SetupPage();					//페이지 설정 창 띄우기
+
+			//IEPageSetupX.CloseIE();					//웹브라우저 닫기
+
+			//IEPageSetupX.PrintBackground = true;		//배경색 및 이미지 인쇄
+
+			//ShrinkToFit								//크기에 맞게 축소(IE8만 지원)
+
+			//IEPageSetupX.Orientation = 0;				//인쇄 방향 설정 - 가로
+
+			IEPageSetupX.Orientation = 1;				//인쇄 방향 설정 - 세로
+
+			//IEPageSetupX.Print();						//인쇄
+
+			//IEPageSetupX.Print(true);					//인쇄(인쇄 대화상자 표시)
+
+			//PrintTest();								//컨트롤 설치 여부 검사
+
+			IEPageSetupX.PaperSize = 'A4';				//인쇄 용지 설정(PaperSize = 'B4')
+
+			//{if (IEPageSetupX.GetPrinters().indexOf('Microsoft XPS Document Writer') > -1) IEPageSetupX.Printer = 'Microsoft XPS Document Writer';}							//프린터 설정: Microsoft XPS Document Writer
+
+			//alert(IEPageSetupX.GetPrinters());		//프린터 목록 구하기
+
+			//alert(IEPageSetupX.GetDefaultPrinter());	//기본 프린터 구하기
+		}
+
+
+		/** 
+		 *	프린트 함수 (프린트 버튼 클릭 시 호출)
+		 *  ※ 새 창을 열어 리포팅 작업 후 인쇄 → 새 창 종료 ※
+		 *	1. 출력 할 영역의 모든 태그들을 innerHTML을 사용하여 매개변수로 받는다.
+		 *	2. window.open() 을 사용하여 새 팝업 창을 띄운다.
+		 *	3. 열린 새 팝업창에 기본 <html><head><body>를 추가한다.
+		 *	4. <body> 안에 매개변수로 받은 printArea를 추가한다.
+		 *	5. window.print() 로 인쇄
+		 *	6. 인쇄 확인이 되면 팝업창은 자동으로 window.close()를 호출하여 닫힘
+			
+		 *	※ 출력 할 영역 생성관련 ※
+		 *	win.document.write('<!DOCTYPE html><head>');
+		 *	win.document.write(printArea); //매개변수로 전달받은 출력 할 영역의 내용 추가
+ 		 *	win.document.write('</body></html>');
+		 */
+		function print(printArea){
+
+			alert(printArea);
+			/** 윈도우(새 창) 객체 생성 */
+			var win = window.open(); 
+
+			/* 새 창에 포커스 위치 */
+			self.focus(); 
+			
+			/* 새 창(브라우저) 오픈 */
+			win.document.open();
+
+			/* 생성된 새 창에 출력에 필요한 DOM영역(HTML 내용) 추가 */
+			win.document.write('<!DOCTYPE html><head>');
+			win.document.write('</head><body>');
+			/* 매개변수로 전달받은 출력 할 영역의 내용(printArea) 추가 */
+			win.document.write(printArea);
+	 		win.document.write('</body></html>');
+
+			/* 출력에 필요한 HTML 문서가 작성되었으면 새 창(브라우저)을 닫음 */
+			win.document.close();
+
+			/* 생성된 HTML문서에 프린트 함수를 호출하여 인쇄 팝업 생성 */
+			win.print();
+
+			/* 인쇄 종료 후 새 창(브라우저) 종료*/
+			win.close();
+		}
+
+
+	</script><!-- //스크립트 -->
+</body>
+</html>

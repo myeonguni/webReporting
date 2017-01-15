@@ -1,0 +1,225 @@
+<HTML>
+<HEAD>
+	<meta charset="UTF-8">
+	<SCRIPT>
+		function Installed()
+		{
+			try
+			{
+				return (new ActiveXObject('IEPageSetupX.IEPageSetup'));
+			}
+			catch (e)
+			{
+				return false;
+			}
+		}
+
+		function PrintTest()
+		{
+			if (!Installed())
+				alert("컨트롤이 설치되지 않았습니다. 정상적으로 인쇄되지 않을 수 있습니다.")
+			else
+				alert("정상적으로 설치되었습니다.");
+		}
+	</SCRIPT>
+
+	<SCRIPT language="JavaScript" for="IEPageSetupX" event="OnError(ErrCode, ErrMsg)">
+		alert('에러 코드: ' + ErrCode + "\n에러 메시지: " + ErrMsg);
+	</SCRIPT>
+</HEAD>
+<OBJECT id=IEPageSetupX classid="clsid:41C5BC45-1BE8-42C5-AD9F-495D6C8D7586" codebase="./IEPageSetupX.cab#version=1,4,0,3" width=0 height=0>	
+	<param name="copyright" value="http://isulnara.com">
+	<div style="position:absolute;top:276;left:320;width:300;height:68;border:solid 1 #99B3A0;background:#D8D7C4;overflow:hidden;z-index:1;visibility:visible;"><FONT style='font-family: "굴림", "Verdana"; font-size: 9pt; font-style: normal;'>
+	<BR>  인쇄 여백제어 컨트롤이 설치되지 않았습니다.  <BR>  <a href="./IEPageSetupX.exe"><font color=red>이곳</font></a>을 클릭하여 수동으로 설치하시기 바랍니다.  </FONT>
+	</div>
+</OBJECT>
+
+<TABLE>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.header='header 설정: http://isulnara.com'">header</a>
+	</TD>
+	<TD>
+		머리글 설정
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.footer='footer 설정'">footer</a>
+	</TD>
+	<TD>
+		바닥글 설정
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.leftMargin=8">leftMargin</a>
+	</TD>
+	<TD>
+		왼쪽 여백(단위: mm)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.rightMargin=2">rightMargin</a>
+	</TD>
+	<TD>
+		오른쪽 여백(단위: mm)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.topMargin=1">topMargin</a>
+	</TD>
+	<TD>
+		위쪽 여백(단위: mm)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.bottomMargin=10">bottomMargin</a>
+	</TD>
+	<TD>
+		아래쪽 여백(단위: mm)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.RollBack();">RollBack</a>
+	</TD>
+	<TD>
+		수정 이전 값으로 되돌림(한 단계 이전만 지원)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.Clear();">Clear</a>
+	</TD>
+	<TD>
+		여백은 0으로, 머리글/바닥글은 모두 제거, 배경색 및 이미지 인쇄 안함, 크기에 맞게 축소 안함
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.SetDefault();">SetDefault</a>
+	</TD>
+	<TD>
+		기본값으로 복원(여백 모두: 0.75mm, 머리글:&w&b페이지 &p / &P, 바닥글:&u&b&d, 배경색 및 이미지 인쇄: 안함, 크기에 맞게 축소: 안함)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.Preview();">Preview</a>
+	</TD>
+	<TD>
+		미리보기
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.SetupPage();">SetupPage</a>
+	</TD>
+	<TD>
+		페이지 설정 창 띄우기
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.CloseIE();">CloseIE</a>
+	</TD>
+	<TD>
+		웹브라우즈 닫기
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.PrintBackground = true;">PrintBackground</a>
+	</TD>
+	<TD>
+		배경색 및 이미지 인쇄
+	</TD>
+</TR>
+<TR>
+	<TD>
+		ShrinkToFit
+	</TD>
+	<TD>
+		크기에 맞게 축소(IE8만 지원)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.Orientation = 0;">Orientation</a>
+	</TD>
+	<TD>
+		인쇄 방향 설정 - 가로
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.Orientation = 1;">Orientation</a>
+	</TD>
+	<TD>
+		인쇄 방향 설정 - 세로
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.Print();">Print</a>
+	</TD>
+	<TD>
+		인쇄
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.Print(true);">Print(true)</a>
+	</TD>
+	<TD>
+		인쇄(인쇄 대화상자 표시)
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="PrintTest();">컨트롤 설치 여부</a>
+	</TD>
+	<TD>
+		컨트롤 설치 여부 검사
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="IEPageSetupX.PaperSize = 'B4';">PaperSize</a>
+	</TD>
+	<TD>
+		인쇄 용지 설정(PaperSize = 'B4')
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="{if (IEPageSetupX.GetPrinters().indexOf('Microsoft XPS Document Writer') > -1) IEPageSetupX.Printer = 'Microsoft XPS Document Writer';}">Printer</a>
+	</TD>
+	<TD>
+		프린터 설정: Microsoft XPS Document Writer
+	</TD>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="alert(IEPageSetupX.GetPrinters());">GetPrinters()</a>
+	</TD>
+	<TD>
+		프린터 목록 구하기
+	</TD>
+</TR>
+</TR>
+<TR>
+	<TD>
+		<a href=# onclick="alert(IEPageSetupX.GetDefaultPrinter());">GetDefaultPrinter()</a>
+	</TD>
+	<TD>
+		기본 프린터 구하기
+	</TD>
+</TR>
+</TABLE>
+<BR>
+</HTML>
